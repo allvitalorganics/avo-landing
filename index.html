@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>AVO Landing Page · Build Brief v1.0</title>
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --bg:#F3EFE5; --paper:#FFFFFF; --ink:#1A1A1C; --mid:#5B5B60;
+  --muted:#8A8A90; --faint:#C9C9CE; --rule:rgba(0,0,0,0.07);
+  --rule-strong:rgba(0,0,0,0.14);
+  --forest:#2D5A32; --forest-deep:#1A3D1E; --sage:#B9D2BD; --sage-soft:#DDE9DE;
+  --warm:#C9B894; --cream:#F2EDE2;
+  --yellow:#FEBC2E; --yellow-soft:#FFF1C8;
+  --red:#B23B1F; --red-soft:#FBE3E3;
+  --blue:#2E7CF6; --blue-soft:#DFEAFB;
+  --sans:-apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Pretendard Variable", "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  --mono:ui-monospace, "SF Mono", Menlo, monospace;
+}
+html { -webkit-font-smoothing:antialiased; }
+body {
+  font-family: var(--sans); background: var(--bg); color: var(--ink);
+  font-size: 15px; line-height: 1.6; letter-spacing: -0.003em;
+}
+
+/* ─── STICKY TOOLBAR ─── */
+.toolbar {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(243, 239, 229, 0.92);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--rule-strong);
+  padding: 14px 28px;
+}
+.toolbar-inner {
+  max-width: 1280px; margin: 0 auto;
+  display: flex; align-items: center; gap: 18px;
+}
+.brand-mark {
+  display:flex; align-items:center; gap:10px; flex-shrink:0;
+}
+.brand-mark .logo {
+  width: 32px; height: 32px; border-radius: 9px;
+  background: var(--forest); color: white;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 13px;
+}
+.brand-mark .label {
+  font-weight: 700; font-size: 13.5px;
+}
+.brand-mark .sub {
+  font-size: 11px; color: var(--mid); font-weight: 500;
+}
+.toolbar-pills {
+  display: flex; gap: 4px; overflow-x: auto;
+  flex: 1; padding: 2px 0;
+}
+.toolbar-pills::-webkit-scrollbar { height: 4px; }
+.toolbar-pills::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 2px; }
+.pill {
+  font-size: 11px; padding: 6px 11px;
+  font-family: var(--mono); color: var(--mid);
+  text-decoration: none; white-space: nowrap;
+  border-radius: 999px; transition: all 0.1s;
+}
+.pill:hover { background: var(--sage-soft); color: var(--forest); }
+.pill.active { background: var(--forest); color: white; }
+.pill .num { font-weight: 700; opacity: 0.65; margin-right: 4px; }
+
+/* ─── CONTENT ─── */
+.container { max-width: 1080px; margin: 0 auto; padding: 32px 28px 96px; }
+header.cover {
+  padding: 56px 0 48px;
+  border-bottom: 1px solid var(--rule-strong);
+  margin-bottom: 48px;
+}
+.eyebrow {
+  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--forest); font-weight: 700; margin-bottom: 14px;
+}
+h1 {
+  font-size: 56px; font-weight: 700;
+  letter-spacing: -0.025em; line-height: 1.05;
+  margin-bottom: 12px; max-width: 920px;
+}
+h1 .kr {
+  display: block; font-size: 28px; font-weight: 500;
+  color: var(--forest); margin-top: 10px; letter-spacing: -0.01em;
+}
+.subhead {
+  font-size: 17px; line-height: 1.6; color: var(--mid);
+  max-width: 760px; margin: 16px 0 0;
+}
+.meta-row {
+  display: flex; flex-wrap: wrap; gap: 22px;
+  margin-top: 28px; font-size: 13px; color: var(--mid);
+}
+.meta-row b { color: var(--ink); }
+
+section.module {
+  padding: 48px 0;
+  border-bottom: 1px solid var(--rule);
+}
+section.module:last-of-type { border-bottom: 0; }
+.module-head {
+  display: flex; gap: 22px; align-items: flex-start;
+  margin-bottom: 28px;
+}
+.bignum {
+  font-size: 38px; font-weight: 700; color: var(--sage);
+  line-height: 1; letter-spacing: -0.02em;
+  min-width: 70px; font-variant-numeric: tabular-nums;
+}
+.module-head .titles { flex: 1; }
+h2 {
+  font-size: 32px; font-weight: 700;
+  letter-spacing: -0.02em; margin: 0; line-height: 1.15;
+}
+h2 .kr {
+  display: block; font-size: 16px; font-weight: 500;
+  color: var(--forest); margin-top: 6px; letter-spacing: 0;
+}
+.module-head .meta {
+  font-size: 12px; color: var(--mid);
+  margin-top: 6px; letter-spacing: 0.02em;
+}
+.module-status {
+  display: inline-block; font-size: 10px;
+  padding: 2px 7px; border-radius: 4px;
+  letter-spacing: 0.08em; font-weight: 700;
+  text-transform: uppercase; margin-left: 6px;
+}
+.module-status.live { background: var(--forest); color: var(--cream); }
+.module-status.draft { background: var(--warm); color: var(--cream); }
+
+h3 {
+  font-size: 21px; font-weight: 700;
+  letter-spacing: -0.015em; margin: 32px 0 12px;
+  line-height: 1.25;
+}
+h4 {
+  font-size: 15px; font-weight: 700;
+  margin: 22px 0 8px;
+}
+p { max-width: 880px; margin-bottom: 12px; }
+p.lead {
+  font-size: 16px; line-height: 1.65;
+  color: var(--mid); max-width: 880px; margin: 0 0 16px;
+}
+strong { font-weight: 700; color: var(--ink); }
+a { color: var(--forest); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ─── TABLES ─── */
+table {
+  width: 100%; border-collapse: collapse;
+  margin: 14px 0; background: var(--paper);
+  border-radius: 10px; overflow: hidden;
+  border: 0.5px solid var(--rule);
+  font-size: 13.5px;
+}
+th {
+  text-align: left; background: rgba(0,0,0,0.03);
+  padding: 10px 14px; font-weight: 600; font-size: 12px;
+  color: var(--mid); letter-spacing: 0.02em;
+  border-bottom: 0.5px solid var(--rule);
+}
+td {
+  padding: 11px 14px; border-bottom: 0.5px solid var(--rule);
+  vertical-align: top; line-height: 1.55;
+}
+tr:last-child td { border-bottom: 0; }
+
+/* ─── CARDS / CALLOUTS ─── */
+.callout {
+  background: var(--sage-soft); border-left: 3px solid var(--forest);
+  padding: 13px 18px; border-radius: 8px;
+  margin: 16px 0; font-size: 14px; line-height: 1.6;
+}
+.callout.warn { background: var(--yellow-soft); border-left-color: var(--warm); }
+.callout.red { background: var(--red-soft); border-left-color: var(--red); }
+.callout strong { color: var(--forest-deep); }
+
+.spec-block {
+  background: var(--paper); border: 1px solid var(--rule);
+  border-radius: 10px; padding: 16px; margin: 14px 0;
+}
+.spec-block .label-tag {
+  font-size: 11px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--forest);
+  font-weight: 700; margin-bottom: 8px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.copy-btn {
+  font-family: inherit; background: var(--forest); color: var(--cream);
+  border: 0; border-radius: 4px;
+  font-size: 10px; padding: 4px 10px;
+  cursor: pointer; letter-spacing: 0.05em;
+  text-transform: uppercase; font-weight: 700;
+}
+.copy-btn.copied { background: #4A7C50; }
+.spec-block pre {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 13.5px; line-height: 1.65;
+  white-space: pre-wrap; word-break: break-word;
+  color: var(--ink);
+}
+.spec-block pre.mono {
+  font-family: var(--mono); font-size: 12.5px;
+}
+
+.lang-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  margin: 12px 0;
+}
+@media (max-width: 720px) { .lang-grid { grid-template-columns: 1fr; } }
+
+ul.tight { list-style: none; padding: 0; margin: 12px 0; }
+ul.tight li {
+  padding: 6px 0 6px 22px; position: relative;
+  font-size: 14px; line-height: 1.6;
+}
+ul.tight li::before {
+  content: "·"; position: absolute; left: 8px; top: 1px;
+  color: var(--forest); font-weight: 700; font-size: 18px; line-height: 1;
+}
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 14px 0; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 14px 0; }
+@media (max-width: 880px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+
+.section-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 3px 9px;
+  font-size: 11px; font-weight: 600;
+  border-radius: 99px; margin-right: 6px;
+}
+.section-tag.required { background: var(--red-soft); color: #92211C; }
+.section-tag.recommended { background: var(--yellow-soft); color: #7A5814; }
+.section-tag.optional { background: var(--bg); color: var(--mid); }
+
+.theme-map {
+  display: inline-block;
+  font-family: var(--mono); font-size: 11px;
+  background: var(--paper); padding: 3px 9px; border-radius: 5px;
+  color: var(--mid); border: 1px solid var(--rule);
+  margin-top: 6px;
+}
+
+.shopify-section-card {
+  background: var(--paper); border: 1px solid var(--rule);
+  border-left: 3px solid var(--forest);
+  border-radius: 10px; padding: 18px 20px; margin: 18px 0;
+}
+.shopify-section-card .head {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 12px; margin-bottom: 12px; flex-wrap: wrap;
+}
+.shopify-section-card .head .title {
+  font-size: 17px; font-weight: 700; letter-spacing: -0.01em;
+}
+.shopify-section-card .head .purpose {
+  font-size: 12.5px; color: var(--mid); margin-top: 2px;
+}
+
+footer {
+  padding: 48px 0;
+  text-align: center; font-size: 12px;
+  color: var(--muted); border-top: 1px solid var(--rule);
+  margin-top: 48px;
+}
+
+#to-top {
+  position: fixed; bottom: 28px; right: 28px;
+  width: 44px; height: 44px;
+  background: var(--ink); color: white;
+  border: 0; border-radius: 50%;
+  font-size: 20px; cursor: pointer;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.2s; z-index: 50;
+}
+#to-top.visible { opacity: 1; pointer-events: auto; }
+</style>
+</head>
+<body>
+
+<nav class="toolbar">
+  <div class="toolbar-inner">
+    <div class="brand-mark">
+      <div class="logo">A</div>
+      <div>
+        <div class="label">AVO Landing</div>
+        <div class="sub">Shopify · Medtech · build brief v1.0</div>
+      </div>
+    </div>
+    <div class="toolbar-pills">
+      <a class="pill" href="#m00"><span class="num">00</span>Strategy</a>
+      <a class="pill" href="#m01"><span class="num">01</span>Site map</a>
+      <a class="pill" href="#m02"><span class="num">02</span>Sections</a>
+      <a class="pill" href="#m03"><span class="num">03</span>Shop links</a>
+      <a class="pill" href="#m04"><span class="num">04</span>Assets</a>
+      <a class="pill" href="#m05"><span class="num">05</span>Shopify build</a>
+      <a class="pill" href="#m06"><span class="num">06</span>Domain + SEO</a>
+      <a class="pill" href="#m07"><span class="num">07</span>Launch QA</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+<header class="cover">
+  <div class="eyebrow">AVO Landing Page · Shopify Medtech · Build brief v1.0</div>
+  <h1>The brand homepage that ships people to Naver and Coupang.<span class="kr">제품 사이트가 아니라 브랜드 사이트. 결제는 네이버 · 쿠팡에서.</span></h1>
+  <p class="subhead">Single-page architecture for Day 1. Built in Shopify with the Medtech paid theme. Shop CTA links go out to Naver Smartstore + Coupang (Korean ecommerce convention — no Shopify checkout for now). Splits to multi-page when SKU 2 launches.</p>
+  <div class="meta-row">
+    <div><b>Owner:</b> Alex builds in Shopify · Dawon designs assets · Justin sets up Klaviyo</div>
+    <div><b>Theme:</b> Medtech (Shopify paid)</div>
+    <div><b>SKU:</b> Wild Greens Salad Soymilk (live · only SKU)</div>
+    <div><b>Date:</b> 2026.05.14</div>
+  </div>
+</header>
+
+<!-- ════════════════════════════════════════════ -->
+<section class="module" id="m00">
+  <div class="module-head">
+    <span class="bignum">00</span>
+    <div class="titles">
+      <h2>Strategy<span class="kr">전략 · 왜 단일 페이지인지</span></h2>
+      <div class="meta">Read this once · the why behind the structure · <span class="module-status live">locked</span></div>
+    </div>
+  </div>
+
+  <p class="lead">Cold visitors arrive via IG (after a Reel lands), Naver search ("AVO 샐러두유"), word-of-mouth referral, or press pickup. They don't know the brand yet. They have ~8 seconds to decide if this is worth their attention. The landing page has one job: <strong>convert that attention into a Naver or Coupang click.</strong></p>
+
+  <h3>Three principles</h3>
+  <table>
+    <tr><th>Principle</th><th>Why</th></tr>
+    <tr><td><strong>One scroll, full story.</strong></td><td>Korean PDPs are long (기승전결 convention). Visitors expect to scroll. Don't make them click between pages to learn what we are.</td></tr>
+    <tr><td><strong>Shop is off-site.</strong></td><td>Korean consumers trust Naver + Coupang more than DTC checkout. The Shopify site is a <em>brand legitimization touchpoint</em>, not a checkout. CTAs route to Naver / Coupang.</td></tr>
+    <tr><td><strong>Witness voice, not teacher.</strong></td><td>The site mirrors the IG voice. First-person observation. Specific details. No "you should." No medical claims. 일반식품 lane only.</td></tr>
+  </table>
+
+  <h3>Single page now → multi-page later</h3>
+  <table>
+    <tr><th>Phase</th><th>Site structure</th></tr>
+    <tr><td>Day 1 → Month 6 (current)</td><td>Single page. <code>/</code> = brand story + product + buy CTAs.</td></tr>
+    <tr><td>Month 6+ (SKU 2 launches)</td><td>Split: <code>/</code> = brand homepage, <code>/products/salad-soymilk</code>, <code>/products/phyto-complete</code>, <code>/about</code>, <code>/story/*</code> (essays/episodes).</td></tr>
+    <tr><td>Year 2+</td><td>Full Shopify storefront if and only if Korean DTC checkout becomes a real channel (after marketplace primacy validated). Until then Shopify = brand site.</td></tr>
+  </table>
+
+  <div class="callout"><strong>Decision rule:</strong> the Shopify site exists to make AVO feel real and answer "wait, who is this brand?" The first 10K buyers will come through Naver/Coupang funnels — they Googled, they landed here, they trusted what they saw, they clicked back to buy where they're used to buying.</div>
+</section>
+
+<!-- ════════════════════════════════════════════ -->
+<section class="module" id="m01">
+  <div class="module-head">
+    <span class="bignum">01</span>
+    <div class="titles">
+      <h2>Site map<span class="kr">사이트 구조</span></h2>
+      <div class="meta">URLs · pages · what each does · <span class="module-status live">locked</span></div>
+    </div>
+  </div>
+
+  <h3>Current (Day 1)</h3>
+  <table>
+    <tr><th>URL</th><th>Purpose</th><th>Source</th></tr>
+    <tr><td><code>/</code></td><td>Single-page brand + product + buy CTAs</td><td>Shopify homepage</td></tr>
+    <tr><td><code>/policies/privacy-policy</code></td><td>Privacy · standard</td><td>Shopify policy template (auto)</td></tr>
+    <tr><td><code>/policies/terms-of-service</code></td><td>Terms · standard</td><td>Shopify policy template (auto)</td></tr>
+    <tr><td><code>/policies/refund-policy</code></td><td>Refunds · note: returns happen via Naver/Coupang, not direct</td><td>Custom</td></tr>
+  </table>
+
+  <h3>Reserved for Month 6+</h3>
+  <table>
+    <tr><th>URL</th><th>Purpose · when to build</th></tr>
+    <tr><td><code>/products/wild-greens-salad-soymilk</code></td><td>Dedicated SKU PDP (when SKU 2 forces homepage to be a brand page)</td></tr>
+    <tr><td><code>/products/phyto-complete</code></td><td>SKU 2 PDP (when launched)</td></tr>
+    <tr><td><code>/about</code></td><td>Heritage long-form (the avo-brand-narrative content)</td></tr>
+    <tr><td><code>/story</code></td><td>Episode archive (Reels embedded + transcripts)</td></tr>
+    <tr><td><code>/journal</code></td><td>Long-form blog (Naver Blog cross-publication)</td></tr>
+  </table>
+
+  <h3>Nav (header) — keep minimal</h3>
+  <table>
+    <tr><th>Position</th><th>Day 1 label</th><th>Action</th></tr>
+    <tr><td>Logo (left)</td><td>AVO (wordmark + 와일드 그린즈)</td><td>scroll to top of /</td></tr>
+    <tr><td>Center · 1</td><td>Story</td><td>anchor → section 4 (Origin)</td></tr>
+    <tr><td>Center · 2</td><td>Product</td><td>anchor → section 3 (Product reveal)</td></tr>
+    <tr><td>Center · 3</td><td>FAQ</td><td>anchor → section 10 (FAQ)</td></tr>
+    <tr><td>Right · 1</td><td>한국어 / English</td><td>language toggle (use Shopify Markets or Weglot)</td></tr>
+    <tr><td>Right · 2</td><td><strong>Shop Naver ↗</strong></td><td>external link to Naver listing (opens new tab)</td></tr>
+  </table>
+
+  <p style="font-size:12.5px; color:var(--muted);">No "Cart" icon in header (no Shopify checkout active). No login / account. Keep header clean.</p>
+</section>
+
+<!-- ════════════════════════════════════════════ -->
+<section class="module" id="m02">
+  <div class="module-head">
+    <span class="bignum">02</span>
+    <div class="titles">
+      <h2>Section-by-section<span class="kr">섹션별 카피 + 비주얼 명세</span></h2>
+      <div class="meta">14 sections · top → bottom · KR primary, EN parallel · <span class="module-status live">locked</span></div>
+    </div>
+  </div>
+
+  <p class="lead">Each section below: purpose · which Medtech section type to use · Korean copy · English copy · visual notes for Dawon. Build top-to-bottom in Shopify customizer in this order.</p>
+
+  <!-- SECTION 01 — HERO -->
+  <div class="shopify-section-card">
+    <div class="head">
+      <div>
+        <div class="title">01 · Hero · the 8-second decision</div>
+        <div class="purpose">First fold. Big image. Brand mark. One-line promise. Two CTAs.</div>
+      </div>
+      <div>
+        <span class="section-tag required">required</span>
+        <div class="theme-map">Medtech: "Image with text" or "Slideshow" (1 slide)</div>
+      </div>
+    </div>
+
+    <div class="lang-grid">
+      <div class="spec-block">
+        <div class="label-tag">Korean <button class="copy-btn" data-copy="hero-kr">Copy</button></div>
+<pre id="hero-kr">진짜 음식이 진짜 결과를 만든다.
+
+와일드 그린즈 샐러두유.
+유기농 동결건조 18종 + 식이섬유 5g + 95% 원액두유.
+
+— 1988년부터 이어진 가공 최소화 식품 철학.
+
+[버튼 1] 네이버에서 구매하기 ↗
+[버튼 2] 쿠팡에서 구매하기 ↗</pre>
+      </div>
+      <div class="spec-block">
+        <div class="label-tag">English <button class="copy-btn" data-copy="hero-en">Copy</button></div>
+<pre id="hero-en">Real food. Real outcomes.
+
+Wild Greens Salad Soymilk.
+18 organic freeze-dried plants · 5g fiber · 95% whole soymilk.
+
+— Minimum-processing food philosophy. Since 1988.
+
+[Button 1] Buy on Naver ↗
+[Button 2] Buy on Coupang ↗</pre>
+      </div>
+    </div>
+
+    <h4>Visual notes for Dawon</h4>
+    <ul class="tight">
+      <li>Full-width hero image · 1920×1080 desktop · 1080×1350 mobile (4:5)</li>
+      <li>Product hero shot with cream/forest backdrop · single pouch standing or held in hand</li>
+      <li>Text overlays in Forest #2D5A32 over Cream #F2EDE2 background panel (left third)</li>
+      <li>Don't use stock B-roll · real product + real setting · Apple/MOHO design system</li>
+      <li>Two CTA buttons side-by-side · primary (Naver) in Forest fill, secondary (Coupang) in Cream with Forest border</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 02 — TRUST STRIP -->
+  <div class="shopify-section-card">
+    <div class="head">
+      <div>
+        <div class="title">02 · Trust strip · the legitimacy row</div>
+        <div class="purpose">6-7 certifications + reg numbers as quiet evidence. No marketing language.</div>
+      </div>
+      <div>
+        <span class="section-tag required">required</span>
+        <div class="theme-map">Medtech: "Multi-column" or "Logo list" (text-only mode)</div>
+      </div>
+    </div>
+
+    <div class="spec-block">
+      <div class="label-tag">Trust badge row <button class="copy-btn" data-copy="trust-row">Copy</button></div>
+<pre id="trust-row">HACCP 인증 시설  ·  유기가공식품 인증  ·  Non-GMO  ·  Vegan  ·  식약처 등록 품목  ·  품목보고번호 2017039705364
+
+KR alt: 좋은 시설에서 만들어진 좋은 음식. 인증으로만 증명되지 않지만, 인증이 없으면 시작도 못 한다.
+EN alt: Made by certified facility. Certification alone doesn't prove quality — but you can't begin without it.</pre>
+    </div>
+
+    <h4>Visual notes</h4>
+    <ul class="tight">
+      <li>Horizontal text strip (NOT logo badges — keep typography-first, no badge graphics)</li>
+      <li>Forest text on Cream background · 11-13pt mono or SF Pro Text · widely tracked</li>
+      <li>Subtle dividers (·) between items · don't use icons</li>
+      <li>Optional: HACCP + 유기 logos in small monochrome at right edge if Medtech section requires images</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 03 — PRODUCT REVEAL -->
+  <div class="shopify-section-card">
+    <div class="head">
+      <div>
+        <div class="title">03 · Product reveal · what it is, what's in it</div>
+        <div class="purpose">Big product hero · key claims in 4 stat tiles · ingredient roll-up.</div>
+      </div>
+      <div>
+        <span class="section-tag required">required</span>
+        <div class="theme-map">Medtech: "Featured product" or "Multi-column" with image left, content right</div>
+      </div>
+    </div>
+
+    <div class="lang-grid">
+      <div class="spec-block">
+        <div class="label-tag">Korean copy <button class="copy-btn" data-copy="product-kr">Copy</button></div>
+<pre id="product-kr">와일드 그린즈
+샐러두유
+
+진짜 음식 한 끼. 보충제가 아니라 식품.
+
+100mL puree pouch · 15포 박스
+80kcal · 식이섬유 5g · 단백질 5g · 18종 유기농 동결건조 채소
+
+원재료 95.205%는 두유. 0.53%는 18종 채소 농축. 나머지는 0. 첨가물도, 향료도, 합성 감미료도.
+
+[18종 채소 표시]
+케일 · 시금치 · 브로콜리 · 셀러리 · 사과 · 당근
+블루베리 · 딸기 · 자색당근 · 자색고구마 · 비트 · 미나리
+양배추 · 바나나 · 파인애플 · 콜리플라워 · 청경채 · 새싹채소
+
+[버튼] 네이버에서 1박스 ₩45,000 ↗
+[버튼] 쿠팡에서 1박스 ₩47,000 ↗</pre>
+      </div>
+      <div class="spec-block">
+        <div class="label-tag">English copy <button class="copy-btn" data-copy="product-en">Copy</button></div>
+<pre id="product-en">Wild Greens
+Salad Soymilk
+
+A real meal in a pouch. Food, not a supplement.
+
+100mL puree pouch · 15 per box
+80kcal · 5g fiber · 5g protein · 18 organic freeze-dried plants
+
+95.205% whole soymilk. 0.53% concentrated 18-plant blend. The rest is nothing. No additives. No flavoring. No synthetic sweeteners.
+
+[18-plant grid]
+Kale · Spinach · Broccoli · Celery · Apple · Carrot
+Blueberry · Strawberry · Purple Carrot · Purple Sweet Potato · Beet · Water Dropwort
+Cabbage · Banana · Pineapple · Cauliflower · Bok Choy · Sprout Greens
+
+[Button] Buy 1 box on Naver · ₩45,000 ↗
+[Button] Buy 1 box on Coupang · ₩47,000 ↗</pre>
+      </div>
+    </div>
+
+    <h4>Visual notes</h4>
+    <ul class="tight">
+      <li>Large product image · 800×800 or 1000×1250 · single pouch + box behind</li>
+      <li>4 stat tiles right of image (or below on mobile): 80kcal · 5g 섬유 · 5g 단백 · 18종</li>
+      <li>18-plant grid as small text chips (no plant illustrations needed Day 1; future v2: small photos of each)</li>
+      <li>"95.205% + 0.53% + 0" arithmetic shown as a quiet typographic moment · large numbers</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 04 — ORIGIN STORY (turn / 전) -->
+  <div class="shopify-section-card">
+    <div class="head">
+      <div>
+        <div class="title">04 · Origin · 1988 ideology continuation</div>
+        <div class="purpose">The 기승전결 turn. Heritage as differentiator. Grandfather's quote anchors.</div>
+      </div>
+      <div>
+        <span class="section-tag required">required</span>
+        <div class="theme-map">Medtech: "Image with text" (image-right or full-width with caption)</div>
+      </div>
+    </div>
+
+    <div class="lang-grid">
+      <div class="spec-block">
+        <div class="label-tag">Korean copy <button class="copy-btn" data-copy="origin-kr">Copy</button></div>
+<pre id="origin-kr">38년 전부터 이어진 일.
+
+1988년, 김수경 박사가 다움을 시작했다.
+그때 그가 만든 건 보충제가 아니었다. 음식이었다.
+가공을 최소화하고, 원료의 형태를 그대로 두고, 필요할 때만 농축하는 방식.
+
+38년이 지나서, 똑같은 기계가 아직 돌아간다.
+똑같은 원칙으로.
+
+AVO은 새로 발견한 게 아니다.
+잊지 않게 도와주는 것이다.
+
+—
+
+"음식이 사람을 살린다는 게 새 발견이 아니다.
+사람들이 잊었을 뿐이다.
+너희가 할 일은 잊지 않게 도와주는 거다."
+
+— 김수경 박사 · 다움 · 1988</pre>
+      </div>
+      <div class="spec-block">
+        <div class="label-tag">English copy <button class="copy-btn" data-copy="origin-en">Copy</button></div>
+<pre id="origin-en">38 years of the same work.
+
+In 1988, Dr. Kim Soo-kyung founded Daoom.
+What he made wasn't a supplement. It was food.
+Minimum processing. Ingredients kept in their original form. Concentrated only when needed.
+
+38 years later, the same machine still runs.
+Same principle.
+
+AVO didn't discover anything new.
+We help people not forget.
+
+—
+
+"Food keeping people alive isn't a new discovery.
+People just forgot.
+Your job is to help them not forget."
+
+— Dr. Kim Soo-kyung · Daoom · 1988</pre>
+      </div>
+    </div>
+
+    <h4>Visual notes</h4>
+    <ul class="tight">
+      <li>Image: real photo of Daoom 평창 factory interior OR the vacuum freeze-dry machine in operation OR 김수경 박사's handwritten note · sepia or muted</li>
+      <li>Grandfather quote as a pull-quote · italic · larger type (22-28pt) · framed with — em-dashes</li>
+      <li>This is the EMOTIONAL CORE of the page · give it the most vertical space</li>
+      <li>3-generation timeline as a horizontal strip below the quote: 1988 · 서해식품 → 2000s · GMF → 2018 · 다움 → 2026 · AVO</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 05 — FOUNDER 1000일 -->
+  <div class="shopify-section-card">
+    <div class="head">
+      <div>
+        <div class="title">05 · Founder's 1000일 · personal proof</div>
+        <div class="purpose">Alex's first-person discovery voice. Lived proof, not clinical claim.</div>
+      </div>
+      <div>
+        <span class="section-tag recommended">recommended</span>
+        <div class="theme-map">Medtech: "Rich text" or "Image with text"</div>
+      </div>
+    </div>
+
+    <div class="lang-grid">
+      <div class="spec-block">
+        <div class="label-tag">Korean copy <button class="copy-btn" data-copy="founder-kr">Copy</button></div>
+<pre id="founder-kr">1000일.
+
+저는 보충제 한 알 안 먹고, 진짜 음식만 먹어봤습니다. 매일 기록했고요.
+
+이게 의학이라는 게 아닙니다. 제가 시도한 거예요.
+제 경우엔, 컨디션이 달라졌습니다. 어떻게 다른지는 아직 정리 중이에요.
+
+AVO은 거기서 시작했습니다.
+와일드 그린즈 샐러두유는 그 1000일을 한 끼 안에 농축한 시도예요.
+
+— Alex Kim, AVO 창업자</pre>
+      </div>
+      <div class="spec-block">
+        <div class="label-tag">English copy <button class="copy-btn" data-copy="founder-en">Copy</button></div>
+<pre id="founder-en">1000 days.
+
+I went 1000 days without a single supplement. Just food. Logged every day.
+
+This isn't medicine. This is what I tried.
+In my case, things shifted. Still working out how.
+
+AVO started from there.
+Wild Greens Salad Soymilk is an attempt to concentrate that 1000 days into one serving.
+
+— Alex Kim, founder of AVO</pre>
+      </div>
+    </div>
+
+    <h4>Visual notes</h4>
+    <ul class="tight">
+      <li>Image: Alex's desk · journals open · 1000일 notes visible · OR Alex holding the product (NO glamour shot — observational)</li>
+      <li>Signature treatment for the byline · "Alex Kim, AVO 창업자" in italic serif or signature font</li>
+      <li>This sits AFTER the heritage (section 04) — heritage anchors, founder confirms</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 06 — HOW TO DRINK -->
+  <div class="shopify-section-card">
+    <div class="head">
+      <div>
+        <div class="title">06 · How to drink it · daily ritual</div>
+        <div class="purpose">Lower the friction. "Tear, drink, done." Mention occasions.</div>
+      </div>
+      <div>
+        <span class="section-tag recommended">recommended</span>
+        <div class="theme-map">Medtech: "Multi-column" (3 columns)</div>
+      </div>
+    </div>
+
+    <div class="lang-grid">
+      <div class="spec-block">
+        <div class="label-tag">Korean copy <button class="copy-btn" data-copy="howto-kr">Copy</button></div>
+<pre id="howto-kr">[1] 뜯어서
+파우치 상단을 뜯으세요. 한 손으로 가능.
+
+[2] 마시거나, 섞거나
+바로 마시거나, 시리얼·요거트·스무디에 섞어 드세요.
+
+[3] 매일 한 번
+아침 식사 대신 또는 식간. 1일 1포 권장.
+
+—
+
+[좋은 순간]
+출근 전 빠른 한 끼 · 운동 후 회복 · 늦은 점심 사이의 갭 · 야식 대체
+
+[보관]
+실온 보관. 직사광선 피해 서늘하고 건조한 곳. 개봉 후 즉시 섭취.</pre>
+      </div>
+      <div class="spec-block">
+        <div class="label-tag">English copy <button class="copy-btn" data-copy="howto-en">Copy</button></div>
+<pre id="howto-en">[1] Tear
+Open the pouch at the top. One-handed.
+
+[2] Drink, or blend
+Drink straight, or mix into cereal, yogurt, smoothie.
+
+[3] Once a day
+Replaces breakfast or fills the mid-meal gap. One pouch a day.
+
+—
+
+[Good moments]
+Quick breakfast before work · Post-workout recovery · The 3pm slump · Late-night-snack swap
+
+[Storage]
+Room temperature. Cool and dry, out of direct sunlight. Once opened, drink immediately.</pre>
+      </div>
+    </div>
+
+    <h4>Visual notes</h4>
+    <ul class="tight">
+      <li>3 columns with simple line illustrations OR product photos at each step</li>
+      <li>NO step-by-step photos of hands tearing (clichéd). Use product flat-lay + lifestyle pairing shots</li>
+      <li>"Good moments" as 4 small bullet cards with light occasion icons</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 07 — NUTRITION + REGULATORY -->
+  <div class="shopify-section-card">
+    <div class="head">
+      <div>
+        <div class="title">07 · Nutrition + regulatory · the back of the box</div>
+        <div class="purpose">식약처-mandated nutrition table. Required by law. Builds trust.</div>
+      </div>
+      <div>
+        <span class="section-tag required">required</span>
+        <div class="theme-map">Medtech: "Custom HTML" or "Rich text" (need a real table)</div>
+      </div>
+    </div>
+
+    <div class="spec-block">
+      <div class="label-tag">영양성분 (1포 100mL 기준) · regulatory table — copy as-is <button class="copy-btn" data-copy="nutrition">Copy</button></div>
+<pre id="nutrition">영양성분 / Nutrition (1회 분량 / Per serving = 100mL · 1포장 / Per package = 1,500mL)
+
+성분 · Nutrient        1포당 · Per pouch    %영양소기준치 · % Daily Value
+열량 · Calories         80 kcal             —
+나트륨 · Sodium         60 mg                3%
+탄수화물 · Carbohydrates 11 g                3%
+  당류 · Sugars          8 g                  8%
+  식이섬유 · Fiber       5 g                 20%
+지방 · Fat               2 g                  4%
+  포화지방 · Sat. Fat   0.3 g                 2%
+  트랜스지방 · Trans     0 g                  —
+콜레스테롤 · Cholesterol 0 mg                  0%
+단백질 · Protein         5 g                  9%
+
+※ %영양소기준치: 1일 영양성분 기준치 2,000 kcal 기준
+※ % Daily Value based on 2,000 kcal diet · individual needs vary
+
+—
+
+원재료명 / Ingredients
+원액두유 95.205% (대두 100% [국산]), 백설탕, 코코넛꽃액즙분말, 식물성크림 [팜경화유, 변성전분], 효소처리분리대두단백분말, 18종 동결건조과채혼합분말 0.53% (케일·시금치·브로콜리·셀러리·사과·당근·블루베리·딸기·자색당근·자색고구마·비트·미나리·양배추·바나나·파인애플·콜리플라워·청경채·새싹채소 모두 국산 유기농), 정제소금, 알룰로스, 효소처리스테비아, 합성향료
+
+알레르기 / Allergens
+대두 함유 · 동일 시설에서 우유·계란·메밀·땅콩·복숭아·토마토·호두·잣 가공
+Contains soy · Manufactured in a facility that also processes milk, egg, buckwheat, peanut, peach, tomato, walnut, pine nut
+
+품목보고번호 / Product Registration: 2017039705364
+제조원 / Manufacturer: 농업회사법인 대학두유㈜ · 강원 평창 · HACCP 인증
+유통전문판매원 / Distributor: 재니스바스켓㈜ · 서울 광진구 천호대로 840, 1층(광장동)
+소비자상담 / Customer Service: 02-3445-3030 (평일 10:00-17:00)</pre>
+    </div>
+
+    <h4>Visual notes</h4>
+    <ul class="tight">
+      <li>Show as a real two-column table · KR + EN side-by-side</li>
+      <li>식약처 standard format · don't restyle the values · just clean typography</li>
+      <li>Small print but legible (12-13pt body) · this is the trust layer for buyers who actually read</li>
+      <li>Optional collapse-by-default with "전체 영양성분 보기 / View full nutrition" expansion</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 08 — REVIEWS -->
+  <div class="shopify-section-card">
+    <div class="head">
+      <div>
+        <div class="title">08 · Reviews · social proof (placeholder Day 1)</div>
+        <div class="purpose">Empty on Day 1. Fill in after first 20-30 Naver reviews come in. Don't fake.</div>
+      </div>
+      <div>
+        <span class="section-tag recommended">recommended</span>
+        <div class="theme-map">Medtech: "Testimonials" or "Multi-column"</div>
+      </div>
+    </div>
+
+    <div class="spec-block">
+      <div class="label-tag">Day 1 placeholder (until real reviews exist) <button class="copy-btn" data-copy="reviews-d1">Copy</button></div>
+<pre id="reviews-d1">"이 자리는 곧 채워집니다."
+
+샐러두유를 마셔본 분들의 진짜 후기는 출시 후 며칠 안에 네이버 + 쿠팡에 쌓이기 시작합니다.
+저희가 만들지 않을 것입니다.
+
+"This space will fill itself."
+
+Real reviews from people who've tried Salad Soymilk will start appearing on Naver and Coupang within days of launch.
+We won't manufacture any.
+
+—
+
+[Buttons]
+네이버 후기 보기 ↗ → links to Naver listing reviews tab
+쿠팡 후기 보기 ↗ → links to Coupang reviews</pre>
+    </div>
+
+    <div class="spec-block">
+      <div class="label-tag">Week 2-4 (when first 5-10 organic reviews land) <button class="copy-btn" data-copy="reviews-w2">Copy</button></div>
+<pre id="reviews-w2">사람들이 뭐라고 했는지.
+
+[Quote 1] · [name 익명 OK] · Naver/Coupang verified
+
+[Quote 2] · [name] · Naver verified
+
+[Quote 3] · [name] · IG repost (with permission)
+
+전체 후기는 네이버에서 ↗ · 쿠팡에서 ↗
+
+—
+
+What people said.
+[Real reviews pulled from Naver/Coupang and IG with permission.]</pre>
+    </div>
+
+    <h4>Visual notes</h4>
+    <ul class="tight">
+      <li>NEVER use fake testimonials · NEVER use stock photos as "customers"</li>
+      <li>If using a real quote, get written DM permission · attribute by first name only or 익명</li>
+      <li>Star rating average can pull from Naver dashboard manually (or just text: "Naver 평점 4.7 · 12 reviews · as of 2026.06.15")</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 09 — PRESS STRIP -->
+  <div class="shopify-section-card">
+    <div class="head">
+      <div>
+        <div class="title">09 · Press · "as featured in" (placeholder Day 1)</div>
+        <div class="purpose">Empty Day 1. Add real outlets only after pickup. No fake placements.</div>
+      </div>
+      <div>
+        <span class="section-tag optional">optional Day 1</span>
+        <div class="theme-map">Medtech: "Logo list" (real logos only · skip Day 1)</div>
+      </div>
+    </div>
+
+    <div class="callout warn"><strong>Day 1:</strong> hide this section entirely. <strong>Month 1+:</strong> when first press pickup lands (Folin, 식품음료신문, 코메디닷컴, etc.) add 3-5 real outlet logos with article links. <strong>Never use a fake "as seen in" strip.</strong></div>
+  </div>
+
+  <!-- SECTION 10 — FAQ -->
+  <div class="shopify-section-card">
+    <div class="head">
+      <div>
+        <div class="title">10 · FAQ · answer before they ask</div>
+        <div class="purpose">12-15 questions from real CS playbook. Accordion-style.</div>
+      </div>
+      <div>
+        <span class="section-tag required">required</span>
+        <div class="theme-map">Medtech: "FAQ" or "Collapsible content"</div>
+      </div>
+    </div>
+
+    <div class="spec-block">
+      <div class="label-tag">FAQ (KR primary · EN below each) <button class="copy-btn" data-copy="faq">Copy</button></div>
+<pre id="faq">Q. 보충제와 뭐가 다른가요?
+A. 보충제가 아닙니다. 일반식품이에요. 의약품 효과를 약속하지 않습니다. 진짜 음식을 한 끼 분량으로 농축한 형태입니다.
+Q. How is this different from a supplement?
+A. It's not a supplement. It's food. We don't promise drug-like outcomes. It's real food concentrated into one serving.
+
+Q. 임산부도 마셔도 되나요?
+A. 일반식품이며 의약품이 아닙니다. 임산부는 개별 영양 상담 후 결정 권장.
+Q. Can I drink this during pregnancy?
+A. This is general food, not medicine. Consult a nutritionist or doctor before incorporating.
+
+Q. 아이도 마셔도 되나요?
+A. 대두·밀 알레르기 가능 원료 포함. 알레르기 확인 후 결정 권장.
+Q. Is it safe for kids?
+A. Contains soy and wheat-allergen-adjacent ingredients. Confirm allergies before giving.
+
+Q. 하루에 몇 팩 마시면 좋나요?
+A. 1포 권장. 식이섬유 5g 포함되어 과다 섭취 시 부담 가능.
+Q. How many pouches per day?
+A. One. With 5g fiber per pouch, more than two might be heavy on digestion.
+
+Q. 맛은 어떤가요?
+A. 식물·콩 베이스의 자연식 맛. 일반 두유보다 진하고, 코코넛꽃액즙으로 자연 단맛.
+Q. What does it taste like?
+A. Plant + soy natural base. Thicker than regular soy milk. Natural sweetness from coconut flower nectar.
+
+Q. 보관은 어떻게?
+A. 직사광선 피하고 서늘하고 건조한 곳. 개봉 후 즉시 섭취. 실온 보관 가능 (멸균제품).
+Q. How do I store it?
+A. Cool and dry, out of direct sunlight. Drink immediately once opened. Shelf-stable at room temperature (sterilized product).
+
+Q. 소비기한은?
+A. 패키지 상단 표기. 제조일로부터 약 9개월.
+Q. Shelf life?
+A. Printed on top of pouch. ~9 months from manufacture date.
+
+Q. 배송은 며칠 걸리나요?
+A. 네이버 도착보장 적용 (평일 정오 이전 주문 시 익일 도착). 쿠팡 표준 배송.
+Q. Shipping time?
+A. Naver: next-day delivery (orders before noon weekday). Coupang: standard.
+
+Q. 교환·환불은?
+A. 네이버 단순변심 7일 이내 미개봉. 쿠팡 30일. 파손·하자 시 전액 환불.
+Q. Exchanges and returns?
+A. Naver: 7 days from delivery, unopened. Coupang: 30 days. Full refund for damaged/defective product.
+
+Q. 정기 구독은?
+A. 네이버 스마트스토어 정기구독 가능 · 10% 할인.
+Q. Subscription option?
+A. Naver Smartstore offers monthly subscription at 10% off.
+
+Q. 대량 구매 / 공동구매 문의
+A. KakaoTalk 채널 @allvitalorganics 또는 hello@allvitalorganics. 100박스 이상 협의 가능.
+Q. Bulk / group purchase?
+A. KakaoTalk @allvitalorganics or hello@allvitalorganics. 100+ box discussions welcome.
+
+Q. 알레르기 정보
+A. 대두 함유 · 동일 시설에서 우유·계란·메밀·땅콩·복숭아·토마토·호두·잣 가공.
+Q. Allergens?
+A. Contains soy. Same facility processes milk, egg, buckwheat, peanut, peach, tomato, walnut, pine nut.
+
+Q. 혈당 / 당뇨가 있어요
+A. 당류 8g 포함. 본인 식이요법 의사 상담 권장.
+Q. I have blood sugar / diabetes concerns
+A. Contains 8g sugar per pouch. Consult your doctor before incorporating.
+
+Q. 유기농 인증 확인할 수 있나요?
+A. 유기가공식품 인증번호 라벨 후면 표기. 18종 과채는 국산 유기농 동결건조.
+Q. Organic certification?
+A. Organic processed food certification number on back label. 18 fruits/vegetables are Korean organic, freeze-dried.
+
+Q. 해외 배송 가능?
+A. 현재 국내 배송만. 해외는 추후 결정.
+Q. International shipping?
+A. Korea domestic only for now. International TBD.</pre>
+    </div>
+
+    <h4>Visual notes</h4>
+    <ul class="tight">
+      <li>Accordion style · all collapsed by default · click to expand</li>
+      <li>KR question + answer first · EN question + answer beneath (smaller, muted color)</li>
+      <li>Order matters: open with the "what is this" + "is it safe" questions · close with operational (shipping/returns)</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 11 — STICKY BUY CTA -->
+  <div class="shopify-section-card">
+    <div class="head">
+      <div>
+        <div class="title">11 · Sticky buy CTA · scroll-anchored</div>
+        <div class="purpose">Bottom-right floating button after first scroll. Mobile especially.</div>
+      </div>
+      <div>
+        <span class="section-tag recommended">recommended</span>
+        <div class="theme-map">Medtech: custom CSS · or "Announcement bar" pinned at bottom</div>
+      </div>
+    </div>
+
+    <div class="spec-block">
+      <div class="label-tag">Sticky CTA copy <button class="copy-btn" data-copy="sticky-cta">Copy</button></div>
+<pre id="sticky-cta">[Mobile · sticky bottom bar]
+Naver ₩45,000 ↗   |   Coupang ₩47,000 ↗
+
+[Desktop · sticky bottom-right corner]
+샐러두유 구매하기 ↓
+• 네이버 ₩45,000
+• 쿠팡 ₩47,000</pre>
+    </div>
+
+    <h4>Visual notes</h4>
+    <ul class="tight">
+      <li>Appears after user scrolls past hero (300-500px down)</li>
+      <li>Mobile: full-width bottom strip · ink fill · two equal buttons</li>
+      <li>Desktop: floating card bottom-right · 280px wide · forest fill · two stacked options</li>
+      <li>Don't show on hero (would compete with main CTAs)</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 12 — NEWSLETTER -->
+  <div class="shopify-section-card">
+    <div class="head">
+      <div>
+        <div class="title">12 · Newsletter signup · own-channel growth</div>
+        <div class="purpose">Capture emails for the future (post-purchase sequence, SKU 2 waitlist).</div>
+      </div>
+      <div>
+        <span class="section-tag recommended">recommended</span>
+        <div class="theme-map">Medtech: "Email signup" · wire to Klaviyo (free tier OK for &lt;250 contacts)</div>
+      </div>
+    </div>
+
+    <div class="lang-grid">
+      <div class="spec-block">
+        <div class="label-tag">Korean copy <button class="copy-btn" data-copy="news-kr">Copy</button></div>
+<pre id="news-kr">레터 받기.
+
+매주 한 번. 광고 아니고, 한 권의 에세이.
+샐러두유에서 배운 것. 다음 SKU 진행 상황. 가끔, 1000일에서 알게 된 것들.
+
+[이메일 입력]
+[버튼] 받기
+
+—
+
+지금 가입하면, 다음 SKU (Phyto Complete · 분말) 출시 시 가장 먼저 알림 받습니다.</pre>
+      </div>
+      <div class="spec-block">
+        <div class="label-tag">English copy <button class="copy-btn" data-copy="news-en">Copy</button></div>
+<pre id="news-en">Letters.
+
+Once a week. Not promotional. A short essay.
+What we're learning. SKU 2 progress. Sometimes, things from the 1000 days.
+
+[Email field]
+[Button] Subscribe
+
+—
+
+Subscribe now, get first notice on the next SKU launch (Phyto Complete · powder).</pre>
+      </div>
+    </div>
+
+    <h4>Visual notes</h4>
+    <ul class="tight">
+      <li>Background: cream or sage soft · text-only · no distracting illustration</li>
+      <li>Single-field email input + button · placeholder text "you@email.com"</li>
+      <li>Below input: small disclosure "1주에 1통. 언제든 구독 해제. Once a week. Unsubscribe anytime."</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 13 — INSTAGRAM EMBED -->
+  <div class="shopify-section-card">
+    <div class="head">
+      <div>
+        <div class="title">13 · Instagram · @allvitalorganics · live content feed</div>
+        <div class="purpose">Show the brand is alive. Link to actual social proof.</div>
+      </div>
+      <div>
+        <span class="section-tag recommended">recommended</span>
+        <div class="theme-map">Medtech: "Instagram feed" section · or app like Instafeed/EmbedSocial</div>
+      </div>
+    </div>
+
+    <div class="spec-block">
+      <div class="label-tag">Section header <button class="copy-btn" data-copy="ig-header">Copy</button></div>
+<pre id="ig-header">@allvitalorganics — 매주 두 번.
+
+매주 월, 목 저녁 8시. 라벨 뒤 읽기, 평창 다움 방문기, 1000일 발견.
+이 페이지가 끝나면 거기서 계속됩니다.
+
+@allvitalorganics — Twice a week.
+
+Mon + Thu 8pm KST. Reading labels, visiting Daoom in Pyeongchang, what we found across 1000 days.
+This page ends. That feed continues.
+
+[Instagram 6-grid embed]
+[Button] @allvitalorganics ↗</pre>
+    </div>
+
+    <h4>Visual notes</h4>
+    <ul class="tight">
+      <li>6-image grid · 3 columns · most recent Reels + Carousels</li>
+      <li>Auto-refresh via IG Basic Display API or third-party app</li>
+      <li>Click → opens IG account (not the individual post · keeps friction low)</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 14 — FOOTER -->
+  <div class="shopify-section-card">
+    <div class="head">
+      <div>
+        <div class="title">14 · Footer · entity, contact, legal</div>
+        <div class="purpose">식약처-mandated info on the page somewhere · all-in-one location.</div>
+      </div>
+      <div>
+        <span class="section-tag required">required</span>
+        <div class="theme-map">Medtech: "Footer" with custom rich text</div>
+      </div>
+    </div>
+
+    <div class="spec-block">
+      <div class="label-tag">Footer content <button class="copy-btn" data-copy="footer">Copy</button></div>
+<pre id="footer">[Column 1 · Brand]
+AVO · All Vital Organics
+1988년부터 이어진 가공 최소화 식품 철학.
+
+[Column 2 · Shop]
+와일드 그린즈 샐러두유
+→ 네이버 스마트스토어 ↗
+→ 쿠팡 마켓플레이스 ↗
+대량 구매 / 공구 문의 → KakaoTalk 채널
+
+[Column 3 · Connect]
+@allvitalorganics (Instagram)
+@allvitalorganics (KakaoTalk Channel)
+Naver Blog · @allvitalorganics
+hello@allvitalorganics
+
+[Column 4 · Legal]
+유통전문판매원: 재니스바스켓㈜
+서울특별시 광진구 천호대로 840, 1층(광장동)
+사업자등록번호: [등록 후 추가]
+소비자상담실: 02-3445-3030 (평일 10:00-17:00)
+부정·불량식품 신고: 1399
+
+이용약관 · 개인정보처리방침 · 환불정책 (Shopify policies)
+
+본 제품은 일반식품이며 의약품이 아닙니다.
+Made in Korea · ⓒ 2026 All Vital Organics</pre>
+    </div>
+
+    <h4>Visual notes</h4>
+    <ul class="tight">
+      <li>4-column desktop · single-column stacked mobile</li>
+      <li>Forest text on Cream background · small (12pt body, 11pt fine print)</li>
+      <li>The "일반식품 · 의약품 아님" disclaimer required on every page that mentions health benefits</li>
+    </ul>
+  </div>
+
+</section>
+
+<!-- ════════════════════════════════════════════ -->
+<section class="module" id="m03">
+  <div class="module-head">
+    <span class="bignum">03</span>
+    <div class="titles">
+      <h2>Shop links · how every CTA routes<span class="kr">구매 버튼 라우팅</span></h2>
+      <div class="meta">Naver + Coupang external · UTM tracking · future SKU pattern · <span class="module-status live">locked</span></div>
+    </div>
+  </div>
+
+  <h3>Day 1 link inventory</h3>
+  <table>
+    <tr><th>Where</th><th>Label</th><th>URL pattern</th><th>Target</th></tr>
+    <tr><td>Hero (section 01)</td><td>네이버에서 구매하기 ↗</td><td><code>https://smartstore.naver.com/[handle]?utm_source=site&utm_medium=hero</code></td><td>Naver Smartstore listing</td></tr>
+    <tr><td>Hero (section 01)</td><td>쿠팡에서 구매하기 ↗</td><td><code>https://www.coupang.com/vp/products/[id]?utm_source=site&utm_medium=hero</code></td><td>Coupang listing</td></tr>
+    <tr><td>Product reveal (section 03)</td><td>네이버에서 1박스 ₩45,000 ↗</td><td>same Naver URL · <code>utm_medium=product_section</code></td><td>Naver</td></tr>
+    <tr><td>Product reveal (section 03)</td><td>쿠팡에서 1박스 ₩47,000 ↗</td><td>same Coupang URL · <code>utm_medium=product_section</code></td><td>Coupang</td></tr>
+    <tr><td>Reviews (section 08)</td><td>네이버 후기 보기 ↗</td><td>same Naver URL + <code>#review</code> anchor</td><td>Naver reviews tab</td></tr>
+    <tr><td>Reviews (section 08)</td><td>쿠팡 후기 보기 ↗</td><td>same Coupang URL + <code>#review</code></td><td>Coupang reviews</td></tr>
+    <tr><td>Sticky CTA (section 11)</td><td>Naver / Coupang</td><td>same URLs · <code>utm_medium=sticky_cta</code></td><td>both</td></tr>
+    <tr><td>Footer (section 14)</td><td>네이버 / 쿠팡</td><td>same URLs · <code>utm_medium=footer</code></td><td>both</td></tr>
+    <tr><td>Header (section nav)</td><td>Shop Naver ↗</td><td>Naver URL · <code>utm_medium=header</code></td><td>Naver</td></tr>
+  </table>
+
+  <div class="callout"><strong>UTM tracking lets you see in Naver/Coupang analytics which section converts.</strong> If Hero converts 5× more than Footer — keep Hero CTA strong, simplify Footer. If Sticky CTA outperforms Hero on mobile — push more mobile traffic. Without UTMs, every click looks identical in the marketplace dashboard.</div>
+
+  <h3>Future SKU pattern (Month 6+ when SKU 2 lands)</h3>
+  <p>When SKU 2 (Phyto Complete) launches, the homepage splits into a brand homepage + per-product PDPs. Each PDP gets its own Naver + Coupang URL pair. Pattern:</p>
+
+  <div class="spec-block">
+<pre>/products/wild-greens-salad-soymilk
+  → Naver: smartstore.naver.com/avo/products/[salad-soymilk-id]
+  → Coupang: coupang.com/vp/products/[salad-soymilk-id]
+
+/products/phyto-complete
+  → Naver: smartstore.naver.com/avo/products/[phyto-id]
+  → Coupang: coupang.com/vp/products/[phyto-id]
+
+/products/pure-pea-protein (Year 2+)
+/products/pure-colostrum (Year 2+)</pre>
+  </div>
+
+  <h3>Wadiz redirect (when SKU 2 launches)</h3>
+  <p>SKU 2 launches on Wadiz before Naver/Coupang. During the Wadiz campaign window, the product page shows a Wadiz CTA instead of Naver/Coupang. After campaign closes, swap back to Naver/Coupang.</p>
+  <div class="spec-block">
+<pre>SKU 2 campaign-active state (Wadiz live):
+  [Primary CTA]   와디즈에서 펀딩 참여하기 ↗ → wadiz URL
+  [Secondary]     출시 알림 받기 ↓ → email capture
+
+SKU 2 post-Wadiz state (Naver/Coupang live):
+  [Primary CTA]   네이버에서 구매하기 ↗
+  [Secondary]     쿠팡에서 구매하기 ↗</pre>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════ -->
+<section class="module" id="m04">
+  <div class="module-head">
+    <span class="bignum">04</span>
+    <div class="titles">
+      <h2>Asset list · what Dawon designs<span class="kr">디자이너 자산 목록</span></h2>
+      <div class="meta">All images Dawon needs to produce · re-use from avo-labels + avo-brand-narrative where possible · <span class="module-status live">locked</span></div>
+    </div>
+  </div>
+
+  <table>
+    <tr><th>Asset</th><th>Size · spec</th><th>Where used</th><th>Source</th></tr>
+    <tr><td><strong>Hero image (desktop)</strong></td><td>1920×1080 · JPG · &lt;200KB</td><td>Section 01 hero</td><td>New shoot · product + cream backdrop</td></tr>
+    <tr><td><strong>Hero image (mobile)</strong></td><td>1080×1350 (4:5) · JPG · &lt;150KB</td><td>Section 01 hero mobile</td><td>Same shoot, alternate crop</td></tr>
+    <tr><td><strong>Product hero (square)</strong></td><td>1200×1200 · JPG · &lt;200KB</td><td>Section 03 product reveal</td><td>New shoot · single pouch + box</td></tr>
+    <tr><td><strong>18-plant grid visual</strong></td><td>Optional Day 1 · 6×3 thumbnails 200×200 each</td><td>Section 03 (Phase 2)</td><td>Skip Day 1 · just use text chips</td></tr>
+    <tr><td><strong>Daoom factory image</strong></td><td>1600×900 · JPG · sepia or muted color</td><td>Section 04 origin</td><td>Real photo from Daoom 평창 · or grandfather's archive</td></tr>
+    <tr><td><strong>3-generation timeline graphic</strong></td><td>Inline SVG or 1200×400 horizontal banner</td><td>Section 04 origin (below quote)</td><td>Custom Dawon design · matches Brand & roles section in dashboard</td></tr>
+    <tr><td><strong>Alex desk / 1000일 image</strong></td><td>1200×800 · JPG · candid not styled</td><td>Section 05 founder</td><td>New shoot · or Alex selects from existing</td></tr>
+    <tr><td><strong>How-to-drink 3-step illustrations</strong></td><td>3 × 600×600 PNG · monoline or simple flat color</td><td>Section 06 how-to</td><td>Custom Dawon · or skip illustration, use 3 product photos</td></tr>
+    <tr><td><strong>"Good moments" 4 lifestyle shots</strong></td><td>4 × 800×800 JPG</td><td>Section 06 occasions</td><td>Lifestyle shoot · breakfast, post-workout, desk, evening</td></tr>
+    <tr><td><strong>Favicon</strong></td><td>32×32 + 16×16 + 192×192 PNG</td><td>Browser tab</td><td>"A" mark or simplified AVO wordmark on forest bg</td></tr>
+    <tr><td><strong>Apple touch icon</strong></td><td>180×180 PNG</td><td>iOS home screen</td><td>Same mark, sized up</td></tr>
+    <tr><td><strong>OG / share image</strong></td><td>1200×630 JPG · &lt;150KB</td><td>When site is shared on Slack, KakaoTalk, Naver, Twitter, FB</td><td>Hero crop with brand mark + tagline overlay</td></tr>
+    <tr><td><strong>Brand logo · light + dark variants</strong></td><td>SVG · monochrome forest + cream versions</td><td>Header / footer / favicon source</td><td>From avo-brand-narrative or new mark</td></tr>
+  </table>
+
+  <h3>Re-usable from existing AVO docs</h3>
+  <ul class="tight">
+    <li>Color palette: Forest #2D5A32, Sage #B9D2BD, Cream #F2EDE2 (from <a href="https://allvitalorganics.github.io/avo-brand-narrative/">brand-narrative</a>)</li>
+    <li>Type system: SF Pro Display + Pretendard (from brand-narrative)</li>
+    <li>18-plant copy (KR + EN) — already in <a href="https://allvitalorganics.github.io/avo-labels/">avo-labels v3</a></li>
+    <li>Nutrition table — production-verified, copy as-is from avo-labels</li>
+    <li>Grandfather quote — locked in <a href="https://allvitalorganics.github.io/avo-brand-narrative/">avo-brand-narrative v3.1</a></li>
+    <li>Episode 01-04 storyboard B-roll — see <a href="https://allvitalorganics.github.io/avo-dashboard/#content">avo-dashboard Content section</a></li>
+  </ul>
+</section>
+
+<!-- ════════════════════════════════════════════ -->
+<section class="module" id="m05">
+  <div class="module-head">
+    <span class="bignum">05</span>
+    <div class="titles">
+      <h2>Shopify build · Medtech theme mapping<span class="kr">Shopify Medtech 적용 단계</span></h2>
+      <div class="meta">Step-by-step build order · which Medtech section to use for each · <span class="module-status live">locked</span></div>
+    </div>
+  </div>
+
+  <h3>Pre-build checklist</h3>
+  <table>
+    <tr><th>Step</th><th>What</th><th>Owner</th></tr>
+    <tr><td>1</td><td>Shopify plan: Basic ($29/mo) is enough for Day 1 · no checkout volume yet · upgrade if needed Year 2</td><td>Alex / Justin</td></tr>
+    <tr><td>2</td><td>Domain: register <code>allvitalorganics.com</code> (and <code>allvitalorganics.kr</code> for Korean SEO) · point to Shopify</td><td>Justin</td></tr>
+    <tr><td>3</td><td>Medtech theme installed + customizer accessible</td><td>Alex</td></tr>
+    <tr><td>4</td><td>Klaviyo free tier connected (newsletter capture)</td><td>Justin</td></tr>
+    <tr><td>5</td><td>Disable Shopify checkout pages temporarily (no products in Shopify) · use "Coming soon" mode while building</td><td>Alex</td></tr>
+    <tr><td>6</td><td>Google Analytics 4 + Naver Analytics installed via theme settings</td><td>Justin</td></tr>
+  </table>
+
+  <h3>Build sequence (top to bottom)</h3>
+  <table>
+    <tr><th>Step</th><th>Section</th><th>Medtech section to use</th><th>Notes</th></tr>
+    <tr><td>1</td><td>Header</td><td>"Header" (theme-level)</td><td>Logo + 4 nav items + lang toggle + Naver CTA</td></tr>
+    <tr><td>2</td><td>01 Hero</td><td>"Image with text" or "Slideshow"</td><td>Force single-slide for cleanliness · text overlay left</td></tr>
+    <tr><td>3</td><td>02 Trust strip</td><td>"Multi-column" (text-only, 6 columns) or "Logo list"</td><td>Skip image fields · text mode</td></tr>
+    <tr><td>4</td><td>03 Product reveal</td><td>"Featured product" (linked to a Shopify product with $0 inventory) OR "Multi-column"</td><td>Buy buttons override default cart-add: use HTML override or custom CTA buttons routing to Naver/Coupang URLs</td></tr>
+    <tr><td>5</td><td>04 Origin · heritage</td><td>"Image with text" + "Rich text" (for the quote)</td><td>Image on left or full-width above · quote in rich text · timeline as custom HTML</td></tr>
+    <tr><td>6</td><td>05 Founder 1000일</td><td>"Image with text"</td><td>Alex's photo right · text left</td></tr>
+    <tr><td>7</td><td>06 How to drink</td><td>"Multi-column" (3-col)</td><td>3 steps + occasions sub-section as separate "Multi-column" 4-col</td></tr>
+    <tr><td>8</td><td>07 Nutrition + regulatory</td><td>"Custom HTML"</td><td>Need a real two-column table · paste copy directly with table HTML</td></tr>
+    <tr><td>9</td><td>08 Reviews</td><td>"Testimonials" (later · skip Day 1 OR use placeholder text via Rich text)</td><td>Hide by default · enable Week 2+</td></tr>
+    <tr><td>10</td><td>09 Press (Phase 2 only)</td><td>"Logo list"</td><td>Don't enable Day 1 · enable when real pickups land</td></tr>
+    <tr><td>11</td><td>10 FAQ</td><td>"FAQ" or "Collapsible content"</td><td>Accordion · all closed by default</td></tr>
+    <tr><td>12</td><td>11 Sticky CTA</td><td>Custom theme code via theme.liquid OR "Announcement bar" (pinned bottom)</td><td>Mobile-first · desktop secondary</td></tr>
+    <tr><td>13</td><td>12 Newsletter</td><td>"Email signup" · connect to Klaviyo</td><td>Single email field · "Subscribe" button · disclosure beneath</td></tr>
+    <tr><td>14</td><td>13 Instagram</td><td>"Instagram feed" (if Medtech includes) OR install Instafeed (free)</td><td>6-image grid</td></tr>
+    <tr><td>15</td><td>14 Footer</td><td>"Footer" (theme-level)</td><td>4 columns · entity info + legal in column 4</td></tr>
+  </table>
+
+  <h3>Custom code snippets</h3>
+
+  <div class="spec-block">
+    <div class="label-tag">External buy CTA button (override default Shopify cart) <button class="copy-btn" data-copy="btn-html">Copy</button></div>
+<pre id="btn-html" class="mono">&lt;a href="https://smartstore.naver.com/[your-handle]?utm_source=site&utm_medium=hero&utm_campaign=launch"
+   target="_blank" rel="noopener"
+   class="btn btn--primary"
+   style="background:#2D5A32;color:#F2EDE2;padding:14px 28px;border-radius:99px;font-weight:600;text-decoration:none;display:inline-block;"&gt;
+  네이버에서 구매하기 ↗
+&lt;/a&gt;
+
+&lt;a href="https://www.coupang.com/vp/products/[product-id]?utm_source=site&utm_medium=hero"
+   target="_blank" rel="noopener"
+   class="btn btn--secondary"
+   style="background:transparent;color:#2D5A32;border:1.5px solid #2D5A32;padding:13px 28px;border-radius:99px;font-weight:600;text-decoration:none;display:inline-block;margin-left:8px;"&gt;
+  쿠팡에서 구매하기 ↗
+&lt;/a&gt;</pre>
+  </div>
+
+  <div class="spec-block">
+    <div class="label-tag">Sticky mobile CTA (paste in theme.liquid before &lt;/body&gt;) <button class="copy-btn" data-copy="sticky-html">Copy</button></div>
+<pre id="sticky-html" class="mono">&lt;style&gt;
+  .avo-sticky-cta { display:none; position:fixed; bottom:0; left:0; right:0; z-index:90;
+    background:#1A1A1C; padding:12px 16px; gap:8px; }
+  @media (max-width:768px) { .avo-sticky-cta { display:flex; } }
+  .avo-sticky-cta a { flex:1; padding:12px; text-align:center; border-radius:99px;
+    font-size:13px; font-weight:700; text-decoration:none; }
+  .avo-sticky-cta a.naver { background:#2D5A32; color:#fff; }
+  .avo-sticky-cta a.coupang { background:#F2EDE2; color:#1A1A1C; }
+&lt;/style&gt;
+&lt;div class="avo-sticky-cta"&gt;
+  &lt;a class="naver" href="[NAVER URL]?utm_medium=sticky_cta"&gt;Naver ₩45,000&lt;/a&gt;
+  &lt;a class="coupang" href="[COUPANG URL]?utm_medium=sticky_cta"&gt;Coupang ₩47,000&lt;/a&gt;
+&lt;/div&gt;</pre>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════ -->
+<section class="module" id="m06">
+  <div class="module-head">
+    <span class="bignum">06</span>
+    <div class="titles">
+      <h2>Domain + SEO + analytics<span class="kr">도메인 + 검색최적화 + 분석</span></h2>
+      <div class="meta">Korean-first SEO · Naver indexing · GA4 · <span class="module-status live">locked</span></div>
+    </div>
+  </div>
+
+  <h3>Domain</h3>
+  <table>
+    <tr><th>Domain</th><th>Use</th><th>Registrar</th></tr>
+    <tr><td><code>allvitalorganics.com</code></td><td>Primary · English + KR</td><td>Cloudflare Registrar (cheapest, no markup) or Namecheap</td></tr>
+    <tr><td><code>allvitalorganics.kr</code></td><td>Korean SEO + redirect to .com</td><td>Hosting.kr or Whois.co.kr · ~₩20,000/yr</td></tr>
+    <tr><td><code>avo.kr</code></td><td>Short brand alias (optional · check availability)</td><td>Same</td></tr>
+  </table>
+
+  <h3>SEO essentials (Korean-first)</h3>
+  <table>
+    <tr><th>Item</th><th>Setting</th></tr>
+    <tr><td>Page title</td><td>"AVO 와일드 그린즈 샐러두유 · 진짜 음식, 진짜 결과 — All Vital Organics"</td></tr>
+    <tr><td>Meta description (KR)</td><td>"유기농 동결건조 18종 + 식이섬유 5g + 95% 원액두유. 1988년부터 이어진 가공 최소화 식품 철학. 네이버 + 쿠팡에서 구매."</td></tr>
+    <tr><td>Meta description (EN)</td><td>"Wild Greens Salad Soymilk: 18 organic freeze-dried plants, 5g fiber, 95% whole soymilk. Minimum-processing food philosophy since 1988. Shop on Naver and Coupang."</td></tr>
+    <tr><td>OG image</td><td>1200×630 brand mark + tagline (Dawon designs)</td></tr>
+    <tr><td>Canonical URL</td><td><code>https://allvitalorganics.com/</code></td></tr>
+    <tr><td>Hreflang</td><td><code>ko-KR</code> (primary) + <code>en</code> (alternate)</td></tr>
+    <tr><td>Naver Webmaster Tools</td><td>Verify ownership · submit sitemap.xml</td></tr>
+    <tr><td>Google Search Console</td><td>Verify · submit sitemap</td></tr>
+    <tr><td>Naver Sitelinks</td><td>Submit major sections (Origin, Product, FAQ) for sitelink display</td></tr>
+  </table>
+
+  <h3>Naver-specific SEO (critical for Korean traffic)</h3>
+  <ul class="tight">
+    <li><strong>Cross-link to Naver Blog</strong>: every blog post on @allvitalorganics Naver Blog should link to the relevant section of the site · this is how Naver's ranking algorithm "discovers" Shopify sites</li>
+    <li><strong>Schema.org Product markup</strong>: include even though Shopify isn't the checkout · helps Naver understand what we sell</li>
+    <li><strong>Korean keyword density</strong>: 와일드 그린즈, 샐러두유, 유기농 두유, 식이섬유 두유, 식물성 단백질 음료 · used naturally throughout copy · don't stuff</li>
+    <li><strong>Page speed</strong>: under 2s LCP · Naver penalizes slow Korean sites · run PageSpeed Insights after build</li>
+  </ul>
+
+  <h3>Analytics setup</h3>
+  <table>
+    <tr><th>Tool</th><th>What it tracks</th><th>Owner</th></tr>
+    <tr><td>Google Analytics 4</td><td>Page views · scroll depth · CTA clicks (set up event for each Buy button with utm)</td><td>Justin</td></tr>
+    <tr><td>Naver Analytics</td><td>Korean-side traffic source · referrals from Naver search and Naver Blog</td><td>Justin</td></tr>
+    <tr><td>Meta Pixel</td><td>For when paid retargeting starts · fires on every page view</td><td>Justin</td></tr>
+    <tr><td>Klaviyo</td><td>Email signups · post-purchase sequence (when wired to Naver via webhook later)</td><td>Justin</td></tr>
+  </table>
+</section>
+
+<!-- ════════════════════════════════════════════ -->
+<section class="module" id="m07">
+  <div class="module-head">
+    <span class="bignum">07</span>
+    <div class="titles">
+      <h2>Launch QA<span class="kr">런치 전 점검</span></h2>
+      <div class="meta">Pre-launch checklist · don't skip · <span class="module-status live">locked</span></div>
+    </div>
+  </div>
+
+  <table>
+    <tr><th>Item</th><th>Why</th><th>Owner</th></tr>
+    <tr><td>All 14 sections built in correct order</td><td>Story flow matters</td><td>Alex</td></tr>
+    <tr><td>Hero loads &lt;2s on 4G mobile</td><td>Korean mobile traffic primary</td><td>Justin (PageSpeed Insights)</td></tr>
+    <tr><td>All buy CTAs tested on mobile + desktop · open in new tab · UTMs intact</td><td>If clicking lands wrong, conversion = 0</td><td>Justin</td></tr>
+    <tr><td>Naver listing URL is final + live (Saturday morning Day 1)</td><td>Otherwise CTAs go to 404</td><td>Justin</td></tr>
+    <tr><td>Coupang listing URL is final + live</td><td>Same</td><td>Justin</td></tr>
+    <tr><td>FAQ accordion expands/collapses on mobile (touch-friendly)</td><td>Mobile is 70%+ of Korean traffic</td><td>Alex</td></tr>
+    <tr><td>Newsletter capture flow tested · double opt-in setting checked</td><td>Compliance</td><td>Justin</td></tr>
+    <tr><td>Footer entity info matches Naver/Coupang listings exactly</td><td>식약처 consistency rule</td><td>Alex</td></tr>
+    <tr><td>"일반식품 · 의약품 아님" disclaimer visible in footer + nutrition section</td><td>식약처 표시기준</td><td>Alex</td></tr>
+    <tr><td>Allergen disclosure matches label exactly</td><td>식약처 + Naver review compliance</td><td>Alex</td></tr>
+    <tr><td>Privacy policy + Terms + Refund policy published</td><td>Required for Shopify checkout (even if disabled)</td><td>Justin</td></tr>
+    <tr><td>Language toggle KR ↔ EN works · default is KR (Korean primary)</td><td>Wrong default = wrong audience</td><td>Alex</td></tr>
+    <tr><td>OG share preview tested: paste URL into KakaoTalk · Slack · IG DM</td><td>First impression on shares</td><td>Justin</td></tr>
+    <tr><td>Favicon + Apple touch icon set</td><td>Look real on browser tab + bookmarks</td><td>Dawon</td></tr>
+    <tr><td>404 page customized · short + brand voice + back to home CTA</td><td>Inevitable</td><td>Alex</td></tr>
+    <tr><td>Klaviyo welcome email scheduled</td><td>First-touch retention</td><td>Justin</td></tr>
+    <tr><td>GA4 + Naver Analytics firing on every page</td><td>Or you'll be flying blind Week 1</td><td>Justin</td></tr>
+    <tr><td>"Coming soon" / preview mode disabled · site is public</td><td>Common Day 1 mistake</td><td>Alex</td></tr>
+  </table>
+
+  <h3>30-day post-launch additions</h3>
+  <ul class="tight">
+    <li><strong>Week 1:</strong> add real Naver/Coupang star ratings to Reviews section (manual update)</li>
+    <li><strong>Week 2:</strong> add first 3-5 verified reviews with permission</li>
+    <li><strong>Week 4:</strong> add IG live feed (after Episodes 01-08 published)</li>
+    <li><strong>Month 1:</strong> add first press pickup logos (if any)</li>
+    <li><strong>Month 1:</strong> review GA4 data — which section drove most CTA clicks? Re-prioritize order based on data</li>
+    <li><strong>Month 2:</strong> A/B test hero copy variations · run for 2 weeks each</li>
+    <li><strong>Month 3:</strong> add Naver Blog cross-link strip · embed top 3 most-read posts</li>
+    <li><strong>Month 6:</strong> split to multi-page (homepage + /about + /products/*) when SKU 2 lands</li>
+  </ul>
+
+  <div class="callout warn"><strong>One thing you'll be tempted to do but shouldn't:</strong> add a Shopify checkout for direct sales "just in case." Don't. Day 1 traffic is too small to justify the regulatory complexity (KR food import + 식약처 + payment processing). Naver + Coupang already handle this. Direct Shopify checkout becomes a Year 2 decision after the marketplaces have validated the brand.</div>
+</section>
+
+</div>
+
+<button id="to-top" aria-label="Back to top">↑</button>
+
+<footer>
+  AVO Landing Page · Build Brief v1.0 · 2026.05.14<br>
+  Sister docs: <a href="https://allvitalorganics.github.io/avo-os/">avo-os</a> · <a href="https://allvitalorganics.github.io/avo-labels/">avo-labels</a> · <a href="https://allvitalorganics.github.io/avo-brand-narrative/">avo-brand-narrative</a> · <a href="https://allvitalorganics.github.io/avo-dashboard/">avo-dashboard</a><br>
+  Single source of truth for Shopify Medtech build. Iterate as build progresses.
+</footer>
+
+<script>
+// Scroll-spy
+function updateNav() {
+  const sections = document.querySelectorAll('section.module[id]');
+  const y = window.scrollY + 120;
+  let active = sections[0]?.id;
+  sections.forEach(s => { if (s.offsetTop <= y) active = s.id; });
+  document.querySelectorAll('.pill').forEach(p => {
+    p.classList.toggle('active', p.getAttribute('href') === '#' + active);
+  });
+  document.getElementById('to-top')?.classList.toggle('visible', window.scrollY > 600);
+}
+window.addEventListener('scroll', updateNav);
+document.addEventListener('DOMContentLoaded', updateNav);
+
+// Smooth scroll
+document.querySelectorAll('.pill').forEach(link => {
+  link.addEventListener('click', e => {
+    const href = link.getAttribute('href');
+    if (!href?.startsWith('#')) return;
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (!target) return;
+    window.scrollTo({top: target.getBoundingClientRect().top + window.scrollY - 80, behavior:'smooth'});
+  });
+});
+document.getElementById('to-top')?.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+// Copy buttons
+document.querySelectorAll('.copy-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const id = btn.getAttribute('data-copy');
+    const target = document.getElementById(id);
+    if (!target) return;
+    navigator.clipboard.writeText(target.textContent).then(() => {
+      const orig = btn.textContent;
+      btn.textContent = 'Copied';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 1500);
+    });
+  });
+});
+</script>
+
+</body>
+</html>
